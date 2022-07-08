@@ -1,0 +1,16 @@
+version: '2.3'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: broker-mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      default:
+        aliases:
+          - broker.mongodb
+    volumes:
+      - ./.persist/mongo:/data/db
+    environment:
+      HOSTNAME: broker.mongodb
