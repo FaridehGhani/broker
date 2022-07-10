@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/joho/godotenv"
+	"log"
 	"time"
 
 	zmq "github.com/pebbe/zmq4"
@@ -12,6 +14,11 @@ import (
 )
 
 func init() {
+	// load project Env variables
+	if err := godotenv.Load(); err != nil {
+		log.Print("Error loading .env file")
+	}
+
 	// connect mongodb
 	repository.NewMongoDBClient()
 }
