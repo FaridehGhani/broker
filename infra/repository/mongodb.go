@@ -17,8 +17,8 @@ type MongoDb struct {
 
 func NewDB() MongoDb {
 	return MongoDb{
-		db:         "broker",
-		collection: "messages",
+		db:         os.Getenv("DATABASE"),
+		collection: os.Getenv("COLLECTION"),
 	}
 }
 

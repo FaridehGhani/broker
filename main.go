@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/joho/godotenv"
 	"log"
+	"os"
 	"time"
 
 	zmq "github.com/pebbe/zmq4"
@@ -31,10 +32,10 @@ func main() {
 	time.Sleep(100 * time.Millisecond)
 
 	subscriber, _ := zmq.NewSocket(zmq.XSUB)
-	subscriber.Connect("tcp://localhost:6000")
+	subscriber.Connect(os.Getenv("SUBSCRIBER_ENDPOINT"))
 	publisher, _ := zmq.NewSocket(zmq.XPUB)
-	publisher.Bind("tcp://*:6001")
+	publisher.Bind(os.Getenv("PUBLISHER_ENDPOINT"))
 	listener, _ := zmq.NewSocket(zmq.PAIR)
-	listener.Connect("inproc://pipe")
+	listener.Connect(os.Getenv("LISTENER_ENDPOINT"))
 	zmq.Proxy(subscriber, publisher, listener)
 }
