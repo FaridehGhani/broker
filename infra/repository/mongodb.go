@@ -9,10 +9,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func init() {
-	newMongoDBClient()
-}
-
 type MongoDb struct {
 	db         string
 	collection string
@@ -30,7 +26,7 @@ type Storage interface {
 	insertMany(entities []interface{}) error
 }
 
-func newMongoDBClient() *mongo.Client {
+func NewMongoDBClient() *mongo.Client {
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatalf("%s: %s", "mongodb new client error", err)
@@ -51,7 +47,7 @@ func newMongoDBClient() *mongo.Client {
 }
 
 func (m MongoDb) insert(entity interface{}) error {
-	client := newMongoDBClient()
+	client := NewMongoDBClient()
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -62,7 +58,7 @@ func (m MongoDb) insert(entity interface{}) error {
 }
 
 func (m MongoDb) insertMany(entities []interface{}) error {
-	client := newMongoDBClient()
+	client := NewMongoDBClient()
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

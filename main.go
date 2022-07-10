@@ -7,8 +7,14 @@ import (
 
 	"github.com/FaridehGhani/broker/broker"
 	"github.com/FaridehGhani/broker/destination"
+	"github.com/FaridehGhani/broker/infra/repository"
 	"github.com/FaridehGhani/broker/source"
 )
+
+func init() {
+	// connect mongodb
+	repository.NewMongoDBClient()
+}
 
 func main() {
 	go source.Publish()
