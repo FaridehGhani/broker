@@ -9,6 +9,8 @@ import (
 	"github.com/thanhpk/randstr"
 )
 
+var randomNumber = 10
+
 func Publish() {
 	publisher, err := zmq.NewSocket(zmq.PUB)
 	if err != nil {
@@ -19,7 +21,8 @@ func Publish() {
 		log.Fatalf("%s: %s", "publisher bind error", err)
 	}
 
-	for i := 0; i < 10; i++ {
+	// RandomNumber can change
+	for i := 0; i < randomNumber; i++ {
 		token := randstr.Hex(16)
 		s := fmt.Sprintf("%s-%s", "random", token)
 		_, err := publisher.SendMessage(s)
