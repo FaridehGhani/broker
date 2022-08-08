@@ -16,8 +16,6 @@ run
 ```bash
 go mod tidy 
 ```
-for getting all dependencies.
-
 ```bash
 docker-compose up -d
 ```
