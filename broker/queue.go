@@ -1,12 +1,12 @@
 package broker
 
 import (
-	"github.com/FaridehGhani/broker/message"
 	"log"
 
 	zmq "github.com/pebbe/zmq4"
 
 	"github.com/FaridehGhani/broker/infra/repository"
+	"github.com/FaridehGhani/broker/message"
 )
 
 func Listen() {
