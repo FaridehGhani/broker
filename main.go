@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/joho/godotenv"
 	"log"
 	"os"
 	"time"
 
+	"github.com/joho/godotenv"
 	zmq "github.com/pebbe/zmq4"
 
 	"github.com/FaridehGhani/broker/broker"
